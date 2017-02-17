@@ -32,4 +32,23 @@ describe DockingStation do
     end
   end
 
+  describe "dock" do
+    it "docks the working bike into the docking station" do
+      subject.dock(working_bike)
+      expect(subject.release_bike).to eq working_bike
+    end
+
+    it "docks the broken bike into the docking station" do
+      docking_station = described_class.new(1)
+      docking_station.dock(broken_bike)
+      expect{docking_station.dock(working_bike)}.to raise_error(RuntimeError)
+    end
+
+    it "raises an error if the docking station is full" do
+      docking_station = described_class.new(1)
+      docking_station.dock(working_bike)
+      expect{docking_station.dock(working_bike)}.to raise_error("Bike cannot be docked, docking station is full")
+    end
+  end
+
 end
