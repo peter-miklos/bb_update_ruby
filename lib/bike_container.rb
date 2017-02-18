@@ -11,8 +11,8 @@ module BikeContainer
     @bikes << bike
   end
 
-  def remove_bike(bike)
-    @bikes.delete(bike)
+  def remove_bike
+    @bikes.pop
   end
 
   def full?

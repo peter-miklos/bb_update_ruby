@@ -6,7 +6,7 @@ class DockingStation
 
   def release_bike
     fail "No more bike available" if working_bikes.empty?
-    remove_bike(working_bikes.pop)
+    @bikes.delete(working_bikes.pop)
   end
 
   def dock(bike)
