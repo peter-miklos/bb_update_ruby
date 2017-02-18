@@ -1,6 +1,8 @@
+require "./lib/bike.rb"
+
 class DockingStation
 
-  DEFAULT_CAPACITY = 10
+  DEFAULT_CAPACITY = 20
 
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity

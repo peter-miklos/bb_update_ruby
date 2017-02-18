@@ -11,6 +11,14 @@ describe DockingStation do
     allow(broken_bike).to receive(:working?).and_return(false)
   end
 
+  describe "initialize" do
+    it "initiates with a spcific capacity" do
+      docking_station = described_class.new(1)
+      docking_station.dock(working_bike)
+      expect{docking_station.dock(working_bike)}.to raise_error("Bike cannot be docked, docking station is full")
+    end
+  end
+
   describe "release_bike" do
     it "releases a workning bike" do
       subject.dock(working_bike)
