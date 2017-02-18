@@ -28,4 +28,16 @@ describe Bike do
       expect{bike.set_broken}.to raise_error("The bike is already broken")
     end
   end
+
+  describe "repair_bike" do
+    it "fixes the bike" do
+      bike.set_broken
+      bike.repair_bike
+      expect(bike.working?).to eq true
+    end
+
+    it "raises error if the bike not broken" do
+      expect{bike.repair_bike}.to raise_error("The bike is not broken")
+    end
+  end
 end
