@@ -22,6 +22,12 @@ shared_examples_for BikeContainer do
       collection.add_bike(bike_1)
       expect(collection.instance_variable_get("@bikes")).to include bike_1
     end
+
+    it "raises error if the container is full" do
+      collection_2 = described_class.new(1)
+      collection_2.add_bike(bike_1)
+      expect{collection_2.add_bike(bike_2)}.to raise_error("#{described_class.name} is full")
+    end
   end
 
   describe "remove_bike" do
@@ -31,6 +37,22 @@ shared_examples_for BikeContainer do
       collection.remove_bike
       expect(collection.instance_variable_get("@bikes")).to include bike_2
       expect(collection.instance_variable_get("@bikes")).not_to include bike_1
+    end
+
+    it "raises error if the container is empty" do
+      expect{collection.remove_bike}.to raise_error("#{described_class.name} is empty")
+    end
+  end
+
+  describe "full?" do
+    it "returns true if the bike container is full" do
+      collection_2 = described_class.new(1)
+      collection_2.add_bike(bike_1)
+      expect(collection_2.full?).to be_truthy
+    end
+
+    it "returns false if more bikes can be added" do
+      expect(collection.full?).to be_falsy
     end
   end
 end
