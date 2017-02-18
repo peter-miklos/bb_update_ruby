@@ -14,7 +14,7 @@ class Van
 
   def unload_bike(bike)
     fail "The bike is not in the van" unless @bikes.include?(bike)
-    @bikes.pop
+    @bikes.delete(bike)
   end
 
   private

@@ -27,7 +27,7 @@ describe Garage do
 
     it "raises error if the garage is full" do
       other_garage = described_class.new(1)
-      garage.add_bike(bike_1)
+      other_garage.add_bike(bike_1)
       expect{other_garage.add_bike(bike_2)}.to raise_error("Bike cannot be added, garage is full")
     end
   end
@@ -45,7 +45,7 @@ describe Garage do
       garage.add_bike(bike_2)
       garage.repair_bike(bike_2)
       garage.remove_bike(bike_2)
-      expect(garage.instance_variable_get("@bikes")).not include bike_2
+      expect(garage.instance_variable_get("@bikes")).not_to include bike_2
     end
 
     it "raises error if the bike is not available in the garage" do
