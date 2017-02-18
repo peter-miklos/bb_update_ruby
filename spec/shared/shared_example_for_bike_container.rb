@@ -55,4 +55,15 @@ shared_examples_for BikeContainer do
       expect(collection.full?).to be_falsy
     end
   end
+
+  describe "empty?" do
+    it "returns true if the container is empty" do
+      expect(collection.empty?).to be_truthy
+    end
+
+    it "returns false if the container is not empty" do
+      collection.add_bike(bike_1)
+      expect(collection.empty?).to be_falsy
+    end
+  end
 end
